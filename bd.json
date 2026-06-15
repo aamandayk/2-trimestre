@@ -1,0 +1,28 @@
+[
+    {
+        "nome": "Fulano",
+        "data_+nasc": "15/08/2010",
+        "cpf": 12345678900,
+        "e-mail": "fulano@gmail.com",
+        "senha": "fu123"
+    },
+    {
+        "nome": "Amanda",
+        "data_+nasc": "24/09/2010",
+        "cpf": 1255554475,
+        "e-mail": "amandafreitas@gmail.com",
+        "senha": "amd123f"
+    },
+    {
+        "nome": "Larissa",
+        "data_+nasc": "08/07/2009",
+        "e-mail": "larissaalc@gmail.com",
+        "senha": "larissa123"
+    },
+    {
+        "nome": "Gabriel",
+        "data_nasc": "20/12/2010",
+        "e-mail": "gabrielxv@gmail.com",
+        "senha": "aabscd124"
+    }
+]
