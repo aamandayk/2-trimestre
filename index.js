@@ -1,5 +1,6 @@
 // npm init
 // npm i express
+// instalar Rapidapi Client
 const express = require ("express")
 const app = express ()
 const port = 3000
@@ -8,7 +9,7 @@ const fs = require ('fs')
 
 app.post("/clientes", (req,res) => {
   const cliente = req.body
-  // abrir o arquivo
+    // abrir o arquivo
   try { 
     const bd =  JSON.parse (fs.readFileSync ("bd.json", "utf8"))
     
@@ -20,12 +21,21 @@ app.post("/clientes", (req,res) => {
    
     //resposta
     res.status(200).json({resposta: "Cliente cadastrado!"})
- } 
+     } 
  catch (erro){ 
     res.status(500). json ({erro: erro.message})
-  }
-  
-})
+   }
+    })
+    // abrir o arquivo
+     app.get("/clientes", (req,res) => {
+     try {
+        const bd =  JSON.parse (fs.readFileSync ("bd.json", "utf8"))
+    req.status(200).json({resposta: bd})
+    } catch (erro) {
+         res.status (500).json({erro: erro.message})
+
+      }}
+      ) 
 
 app.get("/perfil", (req, res) => {
     res.json({nome : "Amandaaa" , idade : "15 anos"})
@@ -34,3 +44,5 @@ app.get("/perfil", (req, res) => {
 app.listen(port, () => {
     console.log ("API executando na porta" + port)
 })
+
+//  GET http://localhost:3000/clientes*
