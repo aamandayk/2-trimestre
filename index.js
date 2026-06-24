@@ -26,9 +26,9 @@ app.post("/clientes", (req,res) => {
     res.status(500). json ({erro: erro.message})
    }
     })
-    // abrir o arquivo
+    // abrir o arquivo/ banco de dados
      app.get("/clientes", (req,res) => {
-     try {
+        try {
         const bd =  JSON.parse (fs.readFileSync ("bd.json", "utf8"))
     res.status(200).json({resposta: bd})
     } catch (erro) {
@@ -44,6 +44,7 @@ app.get("/perfil", (req, res) => {
 
 
 app.get("/clientes/:cpf", (req,res) => {
+   //pegar cpf
     const cpf = req.params.cpf
     try {
         const bd = JSON.parse(fs.readFileSync("bd.json", "utf8"))
@@ -57,9 +58,30 @@ app.get("/clientes/:cpf", (req,res) => {
 }
 })
 
+app.delete("/cliente/ : cpf", (req,res) => {
+   //pegar o cpf da rota
+         const cpf = req.params.cpf
+   try {
+    // abrir o banco de dados
+         const bd = JSON.parse (fs.readFileSync ("bd.json", "utf8"))
+    //encontrar o índice  do cliente a ser removido
+         const indiceCliente = bdfindIndex ((cliente) => cliente.cpf == cpf ) 
+        
+   //remover o índice da lista
+        if(!indiceCliente == -1) {
+             return res.status (404).json ({erro: "O cliente não existe"})
+   }
+         bd.splice(indiceCliente,1)
+   //dar uma resposta para o cliente
+     res.status (200).json ({resposta: "Cliente excluído com sucesso"})
+   } catch (erro) {} 
+      res.status(500).json({erro: erro.message})
+})
+
+
 app.listen(port, () => {
     console.log ("API executando na porta" + port)
 })
-
+                            
 //  GET http://localhost:3000/clientes
 // TESTAR TODAS AS ROTAS: post, get geral e get cpf
